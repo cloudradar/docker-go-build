@@ -13,4 +13,4 @@ RUN wget -O goreleaser.tar.gz "https://github.com/goreleaser/goreleaser/releases
     rm goreleaser.tar.gz
 
 WORKDIR /go/src/github.com/cloudradar-monitoring/frontman
-CMD FRONTMAN_VERSION=$(git describe --always --long --dirty --tag) goreleaser --snapshot --rm-dist
+CMD ["goreleaser", "--snapshot", "--rm-dist"]
