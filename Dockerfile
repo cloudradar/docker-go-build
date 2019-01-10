@@ -5,7 +5,7 @@ ENV GITHUBRELEASE_VERSION 0.7.2
 
 # Install git
 RUN apk update && \
-    apk add --no-cache git rpm gcc libc-dev openssh bash
+    apk add --no-cache git rpm gcc libc-dev openssh bash make
 
 # Get goreleaser
 RUN wget -O goreleaser.tar.gz "https://github.com/goreleaser/goreleaser/releases/download/v${GORELEASER_VERSION}/goreleaser_Linux_x86_64.tar.gz" && \
