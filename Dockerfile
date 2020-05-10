@@ -1,7 +1,9 @@
-FROM golang:1.12.6-alpine
+FROM golang:1.14.2-alpine
 
 ENV GORELEASER_VERSION 0.111.0
 ENV GITHUBRELEASE_VERSION 0.7.2
+ENV GOLANGCILINT_VERSION 1.17.0
+
 
 # Install git
 RUN apk update && \
@@ -19,6 +21,9 @@ RUN wget -O github-release.tar.bz2 "https://github.com/aktau/github-release/rele
     mv bin/linux/amd64/github-release /usr/local/bin && \
     rm -rf bin && \
     rm github-release.tar.bz2
+
+# Get golangci-lint
+RUN wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s "v${GOLANGCILINT_VERSION}"
 
 WORKDIR /go/src/github.com/cloudradar-monitoring/frontman
 CMD ["goreleaser", "--snapshot", "--rm-dist"]
